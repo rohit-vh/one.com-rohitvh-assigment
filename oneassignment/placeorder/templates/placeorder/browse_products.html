@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Browse Products</title>
+  </head>
+  <body style="width:90%; padding:0 5%;">
+    <div>
+      <h1>Browse products</h1>
+      <form method="post">
+        {% csrf_token %}
+        <div style='max-width: 20em;'>
+          {% for item in products %}
+            <div style='margin:1em 0; padding: 1em; border-radius:1em; border: 1px solid grey;'>
+              {{ item.name }}<br/>
+              {{ item.description }}
+              <hr/>
+              <button name='add_to_cart' value="{{ item.id }}">+ Add</button>
+            </div>
+          {% endfor %}
+        </div>
+      </form>
+    </div>
+    <hr/>
+    <div>
+      <h1>Your cart</h1>
+      <div style='max-width: 20em;'>
+        {% if cart %}
+          {{ cart|length }} items in cart.
+          {% for item in cart %}
+            <div style='margin:1em 0; padding: 1em; border-radius:1em; border: 1px solid grey;'>
+              {{ item.qty }} x {{ item.product.name }}<br/>
+            </div>
+          {% endfor %}
+        {% else %}
+          Your cart is empty
+        {% endif %}
+      </div>
+      <hr/>
+      <button>Place order</button>
+    </div>
+  </body>
+</html>
