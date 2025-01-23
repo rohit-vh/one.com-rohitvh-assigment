@@ -1,0 +1,9 @@
+# Admin credentials
+
+username = siteadmin
+password = one.com
+
+# Shopowner credentials
+
+username = restaurant_owner
+password = owner.test
